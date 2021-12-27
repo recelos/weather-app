@@ -1,0 +1,40 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Weather app</title>
+    <link rel="stylesheet" href="stylesheets/stylesheets.css" type="text/css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto">
+</head>
+
+<body>
+    <header>
+        What's the weather like?
+    </header>
+
+    <div id="display-info">
+        <h1 id="city-name">
+            Cieszyn
+        </h1>
+        <h3 id="description">
+            Sunny
+        </h3>   
+        <h3 id="temperature">
+            Temperature: 25
+        </h3>
+        <h3 id="humidity">
+            Humidity: 25
+        </h3>    
+    </div>
+
+    <div>
+        <input type="text" name="Insert city" placeholder="Eg: London" id="input-text">
+        <input type="button" value="Submit" onclick="getInfo()"/>
+
+    </div>
+
+
+
+<script src="scripts/scripts.js"/>
+    <script>getInfo();</script>
+</body>
+</html>
