@@ -1,4 +1,4 @@
-var apiKey = '6f2b628794734822e42c8fec95bbfeba';
+var apiKey = config.API_KEY
 
 
 function getInfo(){
