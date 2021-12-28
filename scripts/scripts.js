@@ -30,6 +30,8 @@ function actualizePage(response){
     document.getElementById('description').innerHTML = desc
     document.getElementById('temperature').innerHTML = 'Temperature: ' + Math.round(parseFloat(response.main.temp)-273.15) + '&degC'
     document.getElementById('humidity').innerHTML = 'Humidity: ' + response.main.humidity + '%'
+    document.getElementById('pressure').innerHTML = 'Pressure: ' + response.main.pressure + 'hPa'
+
 }
 function changeBackgroundImage(weather){
     switch(weather){
