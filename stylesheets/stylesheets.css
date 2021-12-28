@@ -1,5 +1,5 @@
 body {
-    background-image: url('../images/sunny.png');
+    background-color: black;
     transition: background-image 1s;
     background-size: cover;
     margin: 0;

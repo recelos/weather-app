@@ -52,5 +52,26 @@ function changeBackgroundImage(weather){
     }
 }
 
+function onLoad(){
+    if(navigator.geolocation){
+        navigator.geolocation.getCurrentPosition(position => {
+            let { latitude, longitude } = position.coords
+            console.log(latitude + " " + longitude)
+            sendRequest(latitude, longitude)
+        })
+    }
 
-
+}
+function sendRequest(latitude, longitude){
+    fetch("https://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon="+ longitude + "&appid=" + apiKey)
+    .then(function(resp) {
+        return resp.json() 
+    })
+    .then(function(response) {
+        console.log(response)
+        actualizePage(response)
+    })
+    .catch(() => {
+        throw new TypeError()
+    })
+}
