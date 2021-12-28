@@ -22,17 +22,48 @@ header{
     height: 285;
     margin-bottom: 50px ;
     padding-top: 20;
-    transition: h1 1s;
-    transition: h3 1s;
+    transition: 0.3s;
 }
+#display-info:hover{
+    opacity: 0.6;
+}
+
+
 #display-info h1{
     transition: opacity 1s;
 }
 #display-info h3{
     transition: opacity 1s;
 }
-input[type=button]{
-    background-color: transparent;
-    border-radius: 5px;
-    border-color: black;
+
+#input-box{
+    height: 40;
 }
+input[type="text"]{
+    height: 40;
+    width: 200;
+    border-radius: 15px;
+    background-color: white;
+    border-color: black;
+    opacity: 0.6;
+    transition: 0.3s;
+}
+input[type="text"]:focus{
+    opacity: 1;
+}
+
+
+input[type="button"]{
+    height: 40;
+    color:white;
+    background-color: black;
+    border-radius: 30%;
+    border-color: black;
+    opacity: 0.6;
+    transition: 0.3s;
+}
+input[type="button"]:hover{
+    opacity: 1;
+}
+
+
