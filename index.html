@@ -1,10 +1,14 @@
+
 <html>
 <head>
     <meta charset="utf-8">
     <title>Weather app</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="stylesheets/stylesheets.css" type="text/css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
+    <link rel="icon" href="/images/icon.ico">
+
 </head>
 
 <body onload = "onLoad()">
@@ -15,20 +19,118 @@
     <div id="display-info">
         <h1 id="city-name">
         </h1>
-        <h3 id="description">
-        </h3>   
-        <h3 id="temperature">
-        </h3>
-        <h3 id="humidity">
-        </h3>
-        <h3 id="pressure">
-        </h3>    
+        <h4 id="description">
+        </h4>   
+        <h4 id="temperature">
+        </h4>
+        <h4 id="humidity">
+        </h4>
+        <h4 id="pressure">
+        </h4>    
     </div>
 
     <div id="input-box">
-        <input type="text" name="Insert city" placeholder="Eg: London" id="input-text">
+        <input type="text" name="Insert city" placeholder="e.g. London" id="input-text">
         <input type="button" value="Submit" onclick="getInfo()" id="#input-btn"/>
     </div>
+
+
+    <div class="container">
+        <div class="row">
+
+            <div class="col" id="day1">
+                <h1 id="day-name1">
+                    Thursday
+                </h1>
+                <h4 id="description1">
+                    Clear sky
+                </h4>   
+                <h4 id="temperature1">
+                    Temperature: 20&degC
+                </h4>
+                <h4 id="humidity1">
+                    Humidity: 90%
+                </h4>
+                <h4 id="pressure1">
+                    Pressure: 1000hPa
+                </h4>  
+            </div>
+
+            <div class="col" id="day2">
+                <h1 id="day-name2">
+                    Friday
+                </h1>
+                <h4 id="description2">
+                    Clear sky
+                </h4>   
+                <h4 id="temperature2">
+                    Temperature: 20&degC
+                </h4>
+                <h4 id="humidity2">
+                    Humidity: 90%
+                </h4>
+                <h4 id="pressure2">
+                    Pressure: 1000hPa
+                </h4> 
+            </div>
+
+            <div class="col" id="day3">
+                <h1 id="day-name3">
+                    Saturday
+                </h1>
+                <h4 id="description3">
+                    Clear sky
+                </h4>   
+                <h4 id="temperature3">
+                    Temperature: 20&degC
+                </h4>
+                <h4 id="humidity3">
+                    Humidity: 90%
+                </h4>
+                <h4 id="pressure3">
+                    Pressure: 1000hPa
+                </h4> 
+            </div>
+
+            <div class="col" id="day4">
+                <h1 id="day-name4">
+                    Sunday
+                </h1>
+                <h4 id="description4">
+                    Clear sky
+                </h4>   
+                <h4 id="temperature4">
+                    Temperature: 20&degC
+                </h4>
+                <h4 id="humidity4">
+                    Humidity: 90%
+                </h4>
+                <h4 id="pressure4">
+                    Pressure: 1000hPa
+                </h4> 
+            </div>
+
+            <div class="col" id="day5">
+                <h1 id="day-name5">
+                    Monday
+                </h1>
+                <h4 id="description5">
+                    Clear sky
+                </h4>   
+                <h4 id="temperature5">
+                    Temperature: 20&degC
+                </h4>
+                <h4 id="humidity5">
+                    Humidity: 90%
+                </h4>
+                <h4 id="pressure5">
+                    Pressure: 1000hPa
+                </h4> 
+            </div>
+        </div>
+    </div>
+
+
 
     <script type="text/javascript" src="scripts/config.js"></script>
 
