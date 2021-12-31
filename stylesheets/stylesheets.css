@@ -44,6 +44,9 @@ header{
     opacity: 0.8;
 }
 #display-info:hover{
+    background-color: whitesmoke;
+    color: black;
+    border-color: black;
     opacity: 1;
     -webkit-transform: scale(1.2);
             transform: scale(1.2);
@@ -92,6 +95,8 @@ input[type="button"]{
 }
 input[type="button"]:hover{
     opacity: 1;
+    background-color: white;
+    color: black;
 }
 
 
@@ -106,6 +111,7 @@ div.col{
     color: whitesmoke;
     transition: 0.3s;
     opacity: 0.8;
+    z-index: 0;
 }
 div.col h1{
     font-size: 40px;
@@ -118,6 +124,10 @@ div.col h4{
     padding-bottom: 10;
 }
 div.col:hover{
+    background-color: whitesmoke;
+    color: black;
+    border-color: black;
+    z-index: 1;
     opacity: 1;
     -webkit-transform: scale(1.2);
             transform: scale(1.2);
