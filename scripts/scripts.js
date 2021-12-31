@@ -1,5 +1,6 @@
 var apiKey = config.API_KEY
 
+const weekday = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']
 
 function getInfo(){
     let city = document.getElementById("input-text").value;
@@ -8,14 +9,18 @@ function getInfo(){
         return resp.json() 
     })
     .then(function(response) {
-        console.log(response)
+        let latitude, longitude
+        
+        latitude = response.coord.lat
+        longitude = response.coord.lon
+        console.log(latitude + " " + longitude)
         actualizePage(response)
+        getForecast(latitude, longitude)
     })
     .catch(() => {
         throw new TypeError()
     })
 }
-
 
 function actualizePage(response){
     console.log(changeBackgroundImage(response.weather[0].main))
@@ -74,4 +79,28 @@ function sendRequest(latitude, longitude){
     .catch(() => {
         throw new TypeError()
     })
+}
+
+function getForecast(latitude, longitude) {
+    let exclude = "current,hourly "
+    fetch("https://api.openweathermap.org/data/2.5/onecall?lat=" + latitude + "&lon="+ longitude + "&exclude=" + exclude + "&appid=" + apiKey)
+    .then(function(resp) {
+        return resp.json()
+    })
+    .then(function(response) {
+        console.log(response)
+        // response.daily.forEach(day => {
+        // console.log(weekday[new Date(day.dt*1000).getDay()])
+        // });
+        actualizeForecast(response)
+
+    })
+    .catch()
+}
+
+function actualizeForecast(response) {
+    document.getElementById('day-name1').innerHTML = weekday[new Date(response.daily[1].dt*1000).getDay()]
+    var desc = response.daily[1].weather[0].description.charAt(0).toUpperCase() + response.daily[1].weather[0].description.slice(1) 
+    document.getElementById('descritpion1').innerHTML = response.daily[1].weather[0].description
+
 }
