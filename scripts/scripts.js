@@ -2,6 +2,7 @@ const apiKey = config.API_KEY
 
 const weekday = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']
 
+
 function getInfo(){
     var city = document.getElementById("input-text").value
     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`)
@@ -29,13 +30,21 @@ function actualizePage(response){
 
     var desc = response.weather[0].description.charAt(0).toUpperCase() + response.weather[0].description.slice(1); 
 
-    document.getElementById('city-name').innerHTML = response.name
-    document.getElementById('description').innerHTML = desc
-    document.getElementById('temperature').innerHTML = `Temperature: ${Math.round(parseFloat(response.main.temp) - 273.15)}&degC`
-    document.getElementById('humidity').innerHTML = `Humidity: ${response.main.humidity}%`
-    document.getElementById('pressure').innerHTML = `Pressure: ${response.main.pressure}hPa`
 
-}
+    document.getElementById('display-info').style.opacity = '0'
+
+    setTimeout(() => {
+        document.getElementById('city-name').innerHTML = response.name
+        document.getElementById('description').innerHTML = desc
+        document.getElementById('temperature').innerHTML = `Temperature: ${Math.round(parseFloat(response.main.temp) - 273.15)}&degC`
+        document.getElementById('humidity').innerHTML = `Humidity: ${response.main.humidity}%`
+        document.getElementById('pressure').innerHTML = `Pressure: ${response.main.pressure}hPa`
+    
+        document.getElementById('display-info').style.opacity = '1'
+    
+    },500)
+
+    }
 function changeBackgroundImage(weather){
     switch(weather){
         case 'Clouds':
@@ -112,68 +121,18 @@ function getForecast(latitude, longitude) {
 }
 
 function actualizeForecast(response) {
-    // Set variables for first forecast
-    var week_name = weekday[new Date(response.daily[1].dt * 1000).getDay()]
-    var desc      = response.daily[1].weather[0].description.charAt(0).toUpperCase() + response.daily[1].weather[0].description.slice(1)
-    var temp      = `Temperature: ${Math.round(parseFloat(response.daily[1].temp['day']) - 273.15)}&degC`  
-    var humi      = `Humidity: ${response.daily[1].humidity}%`
-    var press     = `Pressure: ${response.daily[1].pressure}hPa` 
-    // Change value for first forecast divs
-    document.getElementById('day-name1').innerHTML      = week_name
-    document.getElementById('description1').innerHTML   = desc
-    document.getElementById('temperature1').innerHTML   = temp
-    document.getElementById('humidity1').innerHTML      = humi
-    document.getElementById('pressure1').innerHTML      = press
+    for(let i = 1; i <= 5 ; i++){
+        document.getElementById(`day${i}`).style.opacity = '0'
+    }    
 
-    // Set variables for second forecast
-    week_name = weekday[new Date(response.daily[2].dt * 1000).getDay()]
-    desc      = response.daily[2].weather[0].description.charAt(0).toUpperCase() + response.daily[2].weather[0].description.slice(1)
-    temp      = `Temperature: ${Math.round(parseFloat(response.daily[2].temp['day']) - 273.15)}&degC`  
-    humi      = `Humidity: ${response.daily[2].humidity}%`
-    press     = `Pressure: ${response.daily[2].pressure}hPa` 
-    // Change value for second forecast divs
-    document.getElementById('day-name2').innerHTML      = week_name
-    document.getElementById('description2').innerHTML   = desc
-    document.getElementById('temperature2').innerHTML   = temp
-    document.getElementById('humidity2').innerHTML      = humi
-    document.getElementById('pressure2').innerHTML      = press
-
-    // Set variables for third forecast
-    week_name = weekday[new Date(response.daily[3].dt * 1000).getDay()]
-    desc      = response.daily[3].weather[0].description.charAt(0).toUpperCase() + response.daily[3].weather[0].description.slice(1)
-    temp      = `Temperature: ${Math.round(parseFloat(response.daily[3].temp['day']) - 273.15)}&degC`  
-    humi      = `Humidity: ${response.daily[3].humidity}%`
-    press     = `Pressure: ${response.daily[3].pressure}hPa` 
-    // Change value for third forecast divs
-    document.getElementById('day-name3').innerHTML      = week_name
-    document.getElementById('description3').innerHTML   = desc
-    document.getElementById('temperature3').innerHTML   = temp
-    document.getElementById('humidity3').innerHTML      = humi
-    document.getElementById('pressure3').innerHTML      = press
-
-    // Set variables for fourth forecast
-    week_name = weekday[new Date(response.daily[4].dt * 1000).getDay()]
-    desc      = response.daily[4].weather[0].description.charAt(0).toUpperCase() + response.daily[4].weather[0].description.slice(1)
-    temp      = `Temperature: ${Math.round(parseFloat(response.daily[4].temp['day']) - 273.15)}&degC`  
-    humi      = `Humidity: ${response.daily[4].humidity}%`
-    press     = `Pressure: ${response.daily[4].pressure}hPa` 
-    // Change value for fourth forecast divs
-    document.getElementById('day-name4').innerHTML      = week_name
-    document.getElementById('description4').innerHTML   = desc
-    document.getElementById('temperature4').innerHTML   = temp
-    document.getElementById('humidity4').innerHTML      = humi
-    document.getElementById('pressure4').innerHTML      = press
-
-    // Set variables for fifth forecast
-    week_name = weekday[new Date(response.daily[5].dt * 1000).getDay()]
-    desc      = response.daily[5].weather[0].description.charAt(0).toUpperCase() + response.daily[5].weather[0].description.slice(1)
-    temp      = `Temperature: ${Math.round(parseFloat(response.daily[5].temp['day']) - 273.15)}&degC`  
-    humi      = `Humidity: ${response.daily[5].humidity}%`
-    press     = `Pressure: ${response.daily[5].pressure}hPa` 
-    // Change value for fifth forecast divs
-    document.getElementById('day-name5').innerHTML      = week_name
-    document.getElementById('description5').innerHTML   = desc
-    document.getElementById('temperature5').innerHTML   = temp
-    document.getElementById('humidity5').innerHTML      = humi
-    document.getElementById('pressure5').innerHTML      = press
+    setTimeout(() => {
+        for(let i = 1; i <= 5 ; i++){
+            document.getElementById(`day-name${i.toString()}`).innerHTML    = weekday[new Date(response.daily[i].dt * 1000).getDay()]
+            document.getElementById(`description${i.toString()}`).innerHTML = response.daily[i].weather[0].description.charAt(0).toUpperCase() + response.daily[i].weather[0].description.slice(1)
+            document.getElementById(`temperature${i.toString()}`).innerHTML = `Temperature: ${Math.round(parseFloat(response.daily[i].temp['day']) - 273.15)}&degC` 
+            document.getElementById(`humidity${i.toString()}`).innerHTML    = `Humidity: ${response.daily[i].humidity}%` 
+            document.getElementById(`pressure${i.toString()}`).innerHTML    = `Pressure: ${response.daily[i].pressure}hPa`
+            document.getElementById(`day${i}`).style.opacity = '1'
+        }
+    },500)
 }

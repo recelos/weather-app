@@ -37,11 +37,20 @@ header{
     height: 285px;
     margin-bottom: 30px;
     padding-top: 20px;
-    transition: 0.3s;
+    transition: 0.5s;
     border-color: white;
     border: 2px;
     border-style: solid;
-    opacity: 0.8;
+    opacity: 0;
+    transition: transform 0.5s;
+    transition: background-color 0.5s;
+    transition: all 0.5s;
+
+    -webkit-transition: opacity .5s ease-in-out;
+    -moz-transition: opacity .5s ease-in-out;
+    -ms-transition: opacity .5s ease-in-out;
+    -o-transition: opacity .5s ease-in-out;
+    transition: opacity .5s ease-in-out;
 }
 #display-info:hover{
     background-color: whitesmoke;
@@ -50,19 +59,18 @@ header{
     opacity: 1;
     -webkit-transform: scale(1.2);
             transform: scale(1.2);
+    transition: 0.5s;
 }
 
 
 #display-info h1{
-    transition: opacity 1s;
     padding-bottom: 20px;
 }
 #display-info h4{
-    transition: opacity 1s;
+transition: opacity .5s ease-in-out;    
     font-size: larger;
     padding: 5px;
 }
-
 #input-box{
     height: 40;
     margin-bottom: 50px;
@@ -91,13 +99,14 @@ input[type="button"]{
     background-color: black;
     border-radius: 25px;
     border-color: black;
-    opacity: 0.6;
+    opacity: 1;
     transition: 0.3s;
 }
 input[type="button"]:hover{
     opacity: 1;
     background-color: white;
     color: black;
+    bottom: pointer;
 }
 
 
@@ -111,8 +120,14 @@ div.col{
     border-style: solid;
     margin: 10px;
     color: whitesmoke;
-    opacity: 0.8;
     z-index: 0;
+    opacity: 0;
+    transition: all 0.5s;
+    -webkit-transition: opacity 0.5s ease-in-out;
+    -moz-transition: opacity 0.5s ease-in-out;
+    -ms-transition: opacity 0.5s ease-in-out;
+    -o-transition: opacity 0.5s ease-in-out;
+    transition: opacity 0.5s ease-in-out;
 }
 div.col h1{
     font-size: 40px;
@@ -134,4 +149,6 @@ div.col:hover{
     -webkit-transform: scale(1.2);
             transform: scale(1.2);
 }
-
+div.col.notvisible{
+    opacity: 0;
+}
