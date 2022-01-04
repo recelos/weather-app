@@ -3,7 +3,7 @@ const apiKey = config.API_KEY
 const weekday = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']
 
 
-function getInfo(){
+function actualizePage(){
     var city = document.getElementById("input-text").value
     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`)
     .then(function(resp) {
@@ -12,8 +12,8 @@ function getInfo(){
     .then(function(response) {
         let latitude = response.coord.lat
         let longitude = response.coord.lon
-        console.log(latitude + " " + longitude)
-        actualizePage(response)
+        console.log(response.weather[0].main)
+        getCurrentWeather(response)
         getForecast(latitude, longitude)
     })
     .catch(function(error)  {
@@ -21,9 +21,7 @@ function getInfo(){
     })
 }
 
-function actualizePage(response){
-    console.log(changeBackgroundImage(response.weather[0].main))
-
+function getCurrentWeather(response){
     var image = changeBackgroundImage(response.weather[0].main)
 
     document.body.setAttribute("style", `background-image: url(${image});`)
@@ -36,14 +34,13 @@ function actualizePage(response){
     setTimeout(() => {
         document.getElementById('city-name').innerHTML = response.name
         document.getElementById('description').innerHTML = desc
-        document.getElementById('temperature').innerHTML = `Temperature: ${Math.round(parseFloat(response.main.temp) - 273.15)}&degC`
+        document.getElementById('temperature').innerHTML = `${Math.round(parseFloat(response.main.temp) - 273.15)}&degC`
         document.getElementById('humidity').innerHTML = `Humidity: ${response.main.humidity}%`
         document.getElementById('pressure').innerHTML = `Pressure: ${response.main.pressure}hPa`
     
         document.getElementById('display-info').style.opacity = '1'
     
     },500)
-
     }
 function changeBackgroundImage(weather){
     switch(weather){
@@ -58,7 +55,6 @@ function changeBackgroundImage(weather){
         case 'Rain':
         case 'Drizzle':
             return "'../images/rainy.png'";
-
         default:
             return undefined
     }
@@ -94,7 +90,7 @@ function sendRequest(latitude, longitude){
     })
     .then(function(response) {
         console.log(response)
-        actualizePage(response)
+        getCurrentWeather(response)
     })
     .catch(function(error) {
         console.error(error)
@@ -129,10 +125,10 @@ function actualizeForecast(response) {
         for(let i = 1; i <= 5 ; i++){
             document.getElementById(`day-name${i.toString()}`).innerHTML    = weekday[new Date(response.daily[i].dt * 1000).getDay()]
             document.getElementById(`description${i.toString()}`).innerHTML = response.daily[i].weather[0].description.charAt(0).toUpperCase() + response.daily[i].weather[0].description.slice(1)
-            document.getElementById(`temperature${i.toString()}`).innerHTML = `Temperature: ${Math.round(parseFloat(response.daily[i].temp['day']) - 273.15)}&degC` 
+            document.getElementById(`temperature${i.toString()}`).innerHTML = `${Math.round(parseFloat(response.daily[i].temp['day']) - 273.15)}&degC` 
             document.getElementById(`humidity${i.toString()}`).innerHTML    = `Humidity: ${response.daily[i].humidity}%` 
             document.getElementById(`pressure${i.toString()}`).innerHTML    = `Pressure: ${response.daily[i].pressure}hPa`
-            document.getElementById(`day${i}`).style.opacity = '1'
+            document.getElementById(`day${i}`).style.opacity = '1'    
         }
     },500)
 }
