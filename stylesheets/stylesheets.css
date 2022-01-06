@@ -1,6 +1,7 @@
 body{
     background-color: black;
     transition: background-image 1s;
+    transition-delay: 0.5s;
     background-size: cover;
     margin: 0;
     color: black;
