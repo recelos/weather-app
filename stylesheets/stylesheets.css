@@ -17,7 +17,7 @@ header{
     padding-bottom: 20px;
     margin-top: 30px;
     margin-bottom: 30px;
-    font-size: 42;
+    font-size: 42px;
     color: whitesmoke;
     border-radius: 15px;
     border: 2px;
@@ -66,20 +66,19 @@ header{
     z-index: 0;
 }
 input[type="text"]{
-    height: 40;
-    width: 200;
+    height: 40px;
+    width: 225px;
     border-radius: 15px;
     color: whitesmoke;
-    background-color: black;
+    background-color: rgba(0, 0,0, 0.6);
     border-color: white;
     border: 2px;
     border-style: solid;
-    opacity: 0.6;
     transition: 0.3s;
     z-index: 0;
 }
 input[type="text"]:focus{
-    opacity: 1;
+    background-color: rgba(0, 0, 0, 1);
     z-index: 0;
 }
 
@@ -100,11 +99,14 @@ input[type="button"]:hover{
     color: black;
     bottom: pointer;
 }
-input[type="text"]:not(focus){
-    z-index: 0;
+
+div.row{
+    justify-content: center;
 }
 
 div.col-md{
+    margin: auto;
+    align-self: center;
     background-color: black;
     border-radius: 15px;
     border: 2px;
@@ -116,6 +118,7 @@ div.col-md{
     z-index: 0;
     opacity: 0;
     transition: .5s;
+    flex: 0 0 244px;
 }
 div.col-md h1{
     text-align: center;
