@@ -59,6 +59,21 @@ function changeBackgroundImage(weather){
         case 'Rain':
         case 'Drizzle':
             return "'../images/rainy.png'";
+        case 'Mist':
+        case 'Haze':
+        case 'Fog':
+            return "'../images/misty.png'";
+        case 'Smoke':
+            return "'../images/smoke.png'";
+        case 'Dust':
+        case 'Sand':
+            return "'../images/dusty.png'";
+        case 'Tornado':
+            return "'../images/tornado.png'";
+        case 'Squall':
+            return "'../images/squall.png'";
+        case 'Ash':
+            return "'../images/ash.png'";
         default:
             return undefined
     }
@@ -73,19 +88,18 @@ function onLoad(){
                 getForecast(latitude, longitude)
             }, () => {
             // If user denies localization access app is going to get weather and forecast from London
-            let latitude = 51.5085
-            let longitude = -0.1257
+            let latitude    = 51.5085
+            let longitude   = -0.1257
             sendRequest(latitude, longitude)
             getForecast(latitude, longitude)    
         })
     } else {
         // If geolocalization is not available app is going to get weather and forecast from London
-        let latitude = 51.5085
-        let longitude = -0.1257
+        let latitude    = 51.5085
+        let longitude   = -0.1257
         sendRequest(latitude, longitude)
         getForecast(latitude, longitude)
     }
-
 }
 function sendRequest(latitude, longitude){
     fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}`)
